@@ -24,5 +24,5 @@ It will generate:
 ## APIs
 to be added
 
-## Acknowledgements
-* This repo is based on code found in [this PyTorch example repo](https://github.com/timy90022/Perspective-and-Equirectangular)
+### Acknowledgements
+* This repo is based on https://github.com/timy90022/Perspective-and-Equirectangular
