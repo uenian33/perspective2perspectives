@@ -63,32 +63,34 @@ if __name__ == '__main__':
     
     equ = E2P.Equirectangular(input_img)    # Load equirectangular image
 
-    pers_im = equ.GetPerspective(120, 0, 0, 1280, 1280)  # Specify parameters(FOV, theta, phi, height, width)
+    pers_im = equ.GetPerspective(90, 0, 0, 640, 640)  # Specify parameters(FOV, theta, phi, height, width)
     cv2.imwrite('eq2pers.png', pers_im)
 
 
     # convert one perspective to another
-    input_dir = './example/perspective'
+    #input_dir = './example/perspective'
 
     width = 1920
     height = 960
 
     
-    input1 = input_dir + '/perspective_1.png' # 120, 0, 0
-    input2 = input_dir + '/perspective_2.png' # 120, 0, 90
+    #input1 = input_dir + '/perspective_1.png' # 90, 0, 0
+    #input2 = input_dir + '/perspective_2.png' # 120, 0, 90
 
-    im1 = cv2.imread(input1, cv2.IMREAD_COLOR)
-    eq, eq_mask = pers2equir(im1)
+    im1 = cv2.imread('eq2pers.png', cv2.IMREAD_COLOR)
+    eq, eq_mask = pers2equir(im1, FOV=90, 
+			       theta=0,
+			       phi=0)
 
     new_pers = equir2pers(eq,
-                           FOV=120,
-                           theta=0,
-                           phi=45,)
+                           FOV=90,
+                           theta=90,
+                           phi=0,)
 
     new_pers_mask = equir2pers(eq_mask,
-                           FOV=120,
-                           theta=0,
-                           phi=45,)
+                           FOV=90,
+                           theta=90,
+                           phi=0,)
 
     cv2.imwrite('pers2eq.png', eq)
     cv2.imwrite('pers2pers.png', new_pers)
